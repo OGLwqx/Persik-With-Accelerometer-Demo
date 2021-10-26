@@ -24,13 +24,11 @@ const App = () => {
     bridge.subscribe(({ detail: { type, data }}) => {
       if (type === 'VKWebAppAccelerometerChanged') {
         console.log(data)
-        setMouse(prev => {
-            return {
+        setMouse(prev => ({
               ...prev,
               x: prev.x-data.x*3,
               y: prev.y+data.y*3
-            }
-          })
+          }))
       }
     });
 	}, []);
