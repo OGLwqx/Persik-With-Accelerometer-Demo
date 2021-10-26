@@ -8,6 +8,7 @@ const App = () => {
 	const [activePanel, setActivePanel] = useState('persik');
 	const [popout, setPopout] = useState(null);
   const [mouse, setMouse] = useState({x: 100, y: 100});
+  const [acc, setAcc] = useState({x: 0, y: 0});
   const [barrier, setBarrier] = useState({
   	x: 200,
     y: 200,
@@ -42,6 +43,12 @@ const App = () => {
               y: prev.y+data.y*3
           }))
         
+
+        setAcc(prev => ({
+          ...prev,
+          x: data.x,
+          y: data.y
+        }))
         }
           //console.log(barrier.x)
 
