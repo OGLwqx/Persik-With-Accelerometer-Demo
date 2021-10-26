@@ -27,6 +27,13 @@ const Persik = props => (
 			width: props.barrier2.width+'px',
 			height: props.barrier2.height+'px'
 		}}></Div>
+		<Div className="restartBarrier" style={{
+			position: 'absolute',
+			left: props.restartBarrier.x+'px',
+			top: props.restartBarrier.y+'px',
+			width: props.restartBarrier.width+'px',
+			height: props.restartBarrier.height+'px'
+		}}></Div>
 		<Div>{JSON.stringify(props.mouse)}</Div>
 	</Panel>
 );

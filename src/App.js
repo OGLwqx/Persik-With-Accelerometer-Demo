@@ -21,6 +21,12 @@ const App = () => {
     width: 130,
     height: 10
   });
+  const [restartBarrier, setRestartBarrier] = useState({
+  	x: 200,
+    y: 600,
+    width: 130,
+    height: 10
+  });
 
 	useEffect(() => {
     bridge.send("VKWebAppInit");
@@ -63,21 +69,28 @@ const App = () => {
       leftY: barrier.y-barrier.y*0.05,
       rightX: barrier.x+barrier.width*2,
       rightY: barrier.y+barrier.width-barrier.height*2
-  }))
-  setBarrier2(prev => ({
-    ...prev,
-    leftX: barrier2.x,
-    leftY: barrier2.y-barrier2.y*0.05,
-    rightX: barrier2.x+barrier2.width*2,
-    rightY: barrier2.y+barrier2.width-barrier2.height*2
-}))
+    }))
+    setBarrier2(prev => ({
+      ...prev,
+      leftX: barrier2.x,
+      leftY: barrier2.y-barrier2.y*0.03,
+      rightX: barrier2.x+barrier2.width*2,
+      rightY: barrier2.y+barrier2.width-barrier2.height*2
+    }))
+    setRestartBarrier(prev => ({
+      ...prev,
+      leftX: restartBarrier.x,
+      leftY: restartBarrier.y-restartBarrier.y*0.02,
+      rightX: restartBarrier.x+restartBarrier.width*2,
+      rightY: restartBarrier.y+restartBarrier.width-restartBarrier.height*2
+    }))
   //console.log(barrier)
 	}, []);
 
   useEffect(() => {
     //console.log('mouse changed')
     //console.log('mouse'+mouse.x)
-    if(mouse.x > barrier.x && mouse.y > barrier.leftY && mouse.y < barrier.rightY && mouse.x < barrier.rightX)
+    if(mouse.x > barrier.leftX && mouse.y > barrier.leftY && mouse.y < barrier.rightY && mouse.x < barrier.rightX)
     {
       //console.log('detected')
       //console.log(acc.x)
@@ -87,23 +100,33 @@ const App = () => {
         y: prev.y-acc.y*3
     }))
     }
-    console.log(barrier2.rightX+' | '+ mouse.x)
     if(mouse.x > barrier2.x && mouse.y > barrier2.leftY && mouse.y < barrier2.rightY && mouse.x < barrier2.rightX)
     {
-      console.log(barrier2.rightX+' | '+ mouse.x)
+      //console.log(barrier2.rightX+' | '+ mouse.x)
       //console.log('detected')
       //console.log(acc.x)
       setMouse(prev => ({
         ...prev,
         x: prev.x+acc.x*3,
         y: prev.y-acc.y*3
+    }))
+    }
+    if(mouse.x > restartBarrier.x && mouse.y > restartBarrier.leftY && mouse.y < restartBarrier.rightY && mouse.x < restartBarrier.rightX)
+    {
+      //console.log(barrier2.rightX+' | '+ mouse.x)
+      //console.log('detected')
+      //console.log(acc.x)
+      setMouse(prev => ({
+        ...prev,
+        x: 100,
+        y: 100
     }))
     }
   }, [mouse])
 
 
 	return (
-          <Persik id='persik' mouse={mouse} barrier={barrier} barrier2={barrier2}/>
+          <Persik id='persik' mouse={mouse} barrier={barrier} barrier2={barrier2} restartBarrier={restartBarrier}/>
 	);
 }
 

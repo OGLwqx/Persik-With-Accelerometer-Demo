@@ -8,3 +8,7 @@
 .Barrier {
   background-color: rebeccapurple;
 }
+
+.restartBarrier {
+  background-color: red;
+}
