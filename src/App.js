@@ -41,6 +41,8 @@ const App = () => {
               x: prev.x-data.x*3,
               y: prev.y+data.y*3
           }))
+        
+        }
           //console.log(barrier.x)
 
       }
