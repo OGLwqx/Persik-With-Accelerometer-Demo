@@ -27,8 +27,8 @@ const App = () => {
         setMouse(prev => {
             return {
               ...prev,
-              x: prev.x-data.x,
-              y: prev.y+data.y^2
+              x: prev.x-data.x*3,
+              y: prev.y+data.y*3
             }
           })
       }
